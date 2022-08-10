@@ -1,7 +1,7 @@
 #include <cmath>
 #include <SDL.h>
 #include <SDL_opengl.h>
-#include <gl/GLU.h>
+#include <GL/glu.h>
 #include <vector>
 #include <tuple>
 #include <map>
@@ -357,11 +357,11 @@ void Render(float angle, VertexList const& vertices, TriangleList const& triangl
   RenderMesh(vertices, triangles);
 }
 
-int CALLBACK WinMain(
-  _In_ HINSTANCE hInstance,
-  _In_ HINSTANCE hPrevInstance,
-  _In_ LPSTR     lpCmdLine,
-  _In_ int       nCmdShow
+int main(
+//  HINSTANCE hInstance,
+//  HINSTANCE hPrevInstance,
+//  LPSTR     lpCmdLine,
+//  int       nCmdShow
   )
 {
   // Initialize SDL's Video subsystem

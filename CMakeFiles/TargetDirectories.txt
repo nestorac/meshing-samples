@@ -1,3 +1,0 @@
-/home/nestor/Documentos/meshing-samples/CMakeFiles/edit_cache.dir
-/home/nestor/Documentos/meshing-samples/CMakeFiles/rebuild_cache.dir
-/home/nestor/Documentos/meshing-samples/CMakeFiles/GLTest.dir

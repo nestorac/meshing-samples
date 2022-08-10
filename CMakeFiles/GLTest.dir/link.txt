@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/GLTest.dir/main.cpp.o  -o GLTest  /usr/lib/x86_64-linux-gnu/libSDL2main.a /usr/lib/x86_64-linux-gnu/libSDL2.so -lpthread /usr/lib/x86_64-linux-gnu/libGL.so /usr/lib/x86_64-linux-gnu/libGLU.so 

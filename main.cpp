@@ -402,10 +402,10 @@ int main(int argc, char *argv[])
       
   seams = *svalue;
   
-  if (seams > 0) && (seams < 12) {
-    printf ("svalue = %s\n", svalue);
+  if ((seams > 0) && (seams < 12)) {
+    printf ("svalue = %s\n", seams);
   } else {
-    printf ("false svalue = %s\n", svalue);
+    printf ("false svalue = %s\n", seams);
     return 1;
   }
 
@@ -432,7 +432,7 @@ int main(int argc, char *argv[])
   ColorVertexList vertices;
   TriangleList triangles;
 
-  std::tie(vertices, triangles)=make_spherified_cube_seams(&seams);
+  std::tie(vertices, triangles)=make_spherified_cube_seams(10);
 
   bool quit=false;
   float angle=0.f;

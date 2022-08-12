@@ -7,6 +7,14 @@
 #include <map>
 #include <array>
 
+// For GNU getopt code
+#include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+int seams = 0;
+
 struct v3
 {
   v3(float x, float y, float z)
@@ -357,12 +365,7 @@ void Render(float angle, VertexList const& vertices, TriangleList const& triangl
   RenderMesh(vertices, triangles);
 }
 
-int main(
-//  HINSTANCE hInstance,
-//  HINSTANCE hPrevInstance,
-//  LPSTR     lpCmdLine,
-//  int       nCmdShow
-  )
+int main(int argc, char *argv[])
 {
   // Initialize SDL's Video subsystem
   if (SDL_Init(SDL_INIT_VIDEO)<0)
@@ -370,10 +373,49 @@ int main(
     return -1;
   }
 
+  char *svalue = NULL;
+  int index;
+  int s;
+
+  opterr = 0;
+
+
+  while ((s = getopt (argc, argv, "s:")) != -1)
+    switch (s)
+      {
+      case 's':
+        svalue = optarg;
+        break;
+      case '?':
+        if (optopt == 's')
+          fprintf (stderr, "Option -%s requires an argument.\n", optopt);
+        else if (isprint (optopt))
+          fprintf (stderr, "Unknown option `-%s'.\n", optopt);
+        else
+          fprintf (stderr,
+                   "Unknown option character `\\x%x'.\n",
+                   optopt);
+        return 1;
+      default:
+        abort ();
+      }
+      
+  seams = *svalue;
+  
+  if (seams > 0) && (seams < 12) {
+    printf ("svalue = %s\n", svalue);
+  } else {
+    printf ("false svalue = %s\n", svalue);
+    return 1;
+  }
+
+  for (index = optind; index < argc; index++)
+    printf ("Non-option argument %s\n", argv[index]);
+
   // Create our window centered at 512x512 resolution
 
   auto window=SDL_CreateWindow(
-    "My Window",
+    "IcoSphere",
     SDL_WINDOWPOS_CENTERED,
     SDL_WINDOWPOS_CENTERED,
     800,
@@ -390,7 +432,7 @@ int main(
   ColorVertexList vertices;
   TriangleList triangles;
 
-  std::tie(vertices, triangles)=make_spherified_cube_seams(6);
+  std::tie(vertices, triangles)=make_spherified_cube_seams(&seams);
 
   bool quit=false;
   float angle=0.f;

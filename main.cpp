@@ -400,7 +400,7 @@ int main(int argc, char *argv[])
         abort ();
       }
       
-  seams = *svalue;
+  seams = &svalue;
   
   if ((seams > 0) && (seams < 12)) {
     printf ("svalue = %s\n", seams);

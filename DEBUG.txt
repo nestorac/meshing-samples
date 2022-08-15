@@ -1,0 +1,6 @@
+Modify CMakeLists.txt:
+
+  add: set(CMAKE_BUILD_TYPE Debug)
+
+OR Add a command line:
+  cmake -DCMAKE_BUILD_TYPE=Debug .

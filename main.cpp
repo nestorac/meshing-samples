@@ -388,9 +388,9 @@ int main(int argc, char *argv[])
         break;
       case '?':
         if (optopt == 's')
-          fprintf (stderr, "Option -%s requires an argument.\n", optopt);
+          fprintf (stderr, "Option -%i requires an argument.\n", optopt);
         else if (isprint (optopt))
-          fprintf (stderr, "Unknown option `-%s'.\n", optopt);
+          fprintf (stderr, "Unknown option `-%i'.\n", optopt);
         else
           fprintf (stderr,
                    "Unknown option character `\\x%x'.\n",
@@ -400,12 +400,10 @@ int main(int argc, char *argv[])
         abort ();
       }
       
-  seams = &svalue;
+  seams = atoi(svalue);
   
-  if ((seams > 0) && (seams < 12)) {
-    printf ("svalue = %s\n", seams);
-  } else {
-    printf ("false svalue = %s\n", seams);
+  if ((seams < 0) || (seams > 12)) {
+    printf ("Argument -s, %i, must be between 0 and 12\n", seams);
     return 1;
   }
 
@@ -432,7 +430,7 @@ int main(int argc, char *argv[])
   ColorVertexList vertices;
   TriangleList triangles;
 
-  std::tie(vertices, triangles)=make_spherified_cube_seams(10);
+  std::tie(vertices, triangles)=make_spherified_cube_seams(seams);
 
   bool quit=false;
   float angle=0.f;
